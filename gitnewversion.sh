@@ -47,7 +47,7 @@ if [ -f "$filecheck" ]; then
   echo "gitnewversion.sh needs one argument: the new version string"
  fi
 else
- echo "gitnewversion.sh must be run from the LATEXSTY main directory."
+ echo "gitnewversion.sh must be run from the TEXSTYLE main directory."
 fi
 
 

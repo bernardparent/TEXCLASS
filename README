@@ -1,18 +1,18 @@
 
   _______________________________________________________________________________________________
 
-                                           L A T E X S T Y
+                                           T E X S T Y L E
 
                              Repository of Class and Style Files for LaTeX
   _______________________________________________________________________________________________
 
 
-  LATEXSTY includes various class files for LaTeX including the AIAA Journal format, the
+  TEXSTYLE includes various class files for LaTeX including the AIAA Journal format, the
   default thesis format used in my lab (waflthesis), the default report format used in my lab 
   (waflreport), the tables format I use in my courses, and a modified version of the projector 
   class to create slides for technical seminars. 
 
-  LATEXSTY is a Copyright of Bernard Parent. Copyright (c) 2019. All Rights Reserved.                                
+  TEXSTYLE is a Copyright of Bernard Parent. Copyright (c) 2019. All Rights Reserved.                                
 
   Please read the file LICENSE for terms of usage.
 
