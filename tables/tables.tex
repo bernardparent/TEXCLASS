@@ -1,0 +1,416 @@
+\documentclass[oneside,onecolumn,a4paper,10pt,notitlepage]{tables}
+% can use option mtpro 
+
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{scalefnt}
+
+\renewcommand\arraystretch{2.0}
+
+\newcommand{\mfd}{\displaystyle}
+
+
+
+\begin{document}
+
+\pagestyle{empty}
+
+\begin{center}
+\Huge \bf{Viscous Fluid Flow Tables}
+\end{center}
+\vfill
+\vfill
+Mass Conservation Equation in Cartesian Coordinates:\\[0.5em]
+$\mfd \frac{\partial \rho}{\partial t} + \frac{\partial }{\partial x}(\rho u) +  \frac{\partial }{\partial y}(\rho v) +  \frac{\partial }{\partial z}(\rho w) 
+=
+0
+$\\
+\vfill
+Mass Conservation Equations in Cylindrical Coordinates:\\[0.3em]
+$\mfd
+\frac{\partial \rho}{\partial t} + \frac{1}{r} \frac{\partial }{\partial r} (\rho r v_r) + \frac{1}{r} \frac{\partial }{\partial \theta}(\rho v_\theta) +  \frac{\partial}{\partial x}(\rho v_x)=0
+$\\
+
+\vfill
+Navier-Stokes Equations in Cartesian Coordinates:\\[0.3em]
+$
+\mfd \frac{\partial \rho u}{\partial t} + \frac{\partial \rho u^2}{\partial x} + \frac{\partial \rho u v}{\partial y} +  \frac{\partial \rho u w}{\partial z}
+=
+-\frac{\partial P}{\partial x}
++
+ \frac{\partial \tau_{xx}}{\partial x}  
++
+ \frac{\partial \tau_{yx}}{\partial y}  
++
+ \frac{\partial \tau_{zx}}{\partial z}  
++B_x 
+$\\[0.3em]
+$
+\mfd \frac{\partial \rho v}{\partial t} + \frac{\partial \rho uv}{\partial x} + \frac{\partial \rho v^2}{\partial y} +  \frac{\partial \rho wv}{\partial z}
+=
+-\frac{\partial P}{\partial y}
++
+ \frac{\partial \tau_{xy}}{\partial x}  
++
+ \frac{\partial \tau_{yy}}{\partial y}  
++
+ \frac{\partial \tau_{zy}}{\partial z}  
++B_y
+$\\[0.3em]
+$
+\mfd \frac{\partial \rho w}{\partial t} + \frac{\partial \rho uw}{\partial x} + \frac{\partial \rho vw}{\partial y} +  \frac{\partial \rho w^2}{\partial z}
+=
+-\frac{\partial P}{\partial z}
++
+ \frac{\partial \tau_{xz}}{\partial x}  
++
+ \frac{\partial \tau_{yz}}{\partial y}  
++
+ \frac{\partial \tau_{zz}}{\partial z}  
++B_z
+$\\[0.3em]
+\vfill
+with the shear stresses equal to:\\[0.3em]
+%
+$
+\tau_{xx}=\mu\left(\frac{4}{3}  \frac{\partial u}{\partial x}-\frac{2}{3}\frac{\partial u}{\partial y}-\frac{2}{3}\frac{\partial u}{\partial z}\right)~~~~
+\tau_{yy}=\mu\left(\frac{4}{3}  \frac{\partial v}{\partial y}-\frac{2}{3}\frac{\partial v}{\partial x}-\frac{2}{3}\frac{\partial v}{\partial z}\right)~~~~
+\tau_{zz}=\mu\left(\frac{4}{3}  \frac{\partial w}{\partial z}-\frac{2}{3}\frac{\partial w}{\partial x}-\frac{2}{3}\frac{\partial w}{\partial y}\right)
+$\\[0.3em]
+$
+\tau_{xy}=\tau_{yx}=\mu\left(\frac{\partial u}{\partial y}+\frac{\partial v}{\partial x} \right)~~~~
+\tau_{xz}=\tau_{zx}=\mu\left(\frac{\partial u}{\partial z}+\frac{\partial w}{\partial x} \right)~~~~
+\tau_{yz}=\tau_{zy}=\mu\left(\frac{\partial v}{\partial z}+\frac{\partial w}{\partial y} \right)
+$\\[0.3em]
+%
+\vfill
+Navier-Stokes Equations in Cartesian Coordinates (constant $\rho$, constant $\mu$):\\[0.3em]
+$\mfd \rho \left(\frac{\partial u}{\partial t} + u \frac{\partial u}{\partial x} + v \frac{\partial u}{\partial y} + w \frac{\partial u}{\partial z} \right)
+=
+-\frac{\partial P}{\partial x}
++
+\mu  \frac{\partial^2 u}{\partial x^2}  
++
+\mu  \frac{\partial^2 u}{\partial y^2}  
++
+\mu  \frac{\partial^2 u}{\partial z^2}  +B_x
+$\\[0.3em]
+%
+$\mfd \rho \left(\frac{\partial v}{\partial t} + u \frac{\partial v}{\partial x} + v \frac{\partial v}{\partial y} + w \frac{\partial v}{\partial z} \right)
+=
+-\frac{\partial P}{\partial y}
++
+\mu  \frac{\partial^2 v}{\partial x^2}  
++
+\mu  \frac{\partial^2 v}{\partial y^2}  
++
+\mu  \frac{\partial^2 v}{\partial z^2}  +B_y
+$\\[0.3em]
+%
+$\mfd \rho \left(\frac{\partial w}{\partial t} + u \frac{\partial w}{\partial x} + v \frac{\partial w}{\partial y} + w \frac{\partial w}{\partial z} \right)
+=
+-\frac{\partial P}{\partial z}
++ 
+\mu  \frac{\partial^2 w}{\partial x^2}  
++
+\mu  \frac{\partial^2 w}{\partial y^2}  
++
+\mu  \frac{\partial^2 w}{\partial z^2}  +B_z
+$\\[0.8em]
+\vfill
+Navier-Stokes Equations in Axisymmetric Coordinates (constant $\rho$, constant $\mu$):\\[0.3em]
+$
+\mfd \rho \left(\frac{\partial v_x}{\partial t}+ v_x \frac{\partial v_x}{\partial x} + v_r \frac{\partial v_x}{\partial r} \right)=-\frac{\partial P}{\partial x}+ \mu\frac{\partial^2 v_x}{\partial x^2}+\frac{\mu}{r} \frac{\partial }{\partial r}\left(r \frac{\partial v_x}{\partial r} \right) +B_x
+$\\[0.3em]
+$
+\mfd \rho \left(\frac{\partial v_r}{\partial t}+ v_x \frac{\partial v_r}{\partial x} + v_r \frac{\partial v_r}{\partial r} \right)=-\frac{\partial P}{\partial r}+ \mu\frac{\partial^2 v_r}{\partial x^2}+\frac{\mu}{r} \frac{\partial }{\partial r}\left(r \frac{\partial v_r}{\partial r} \right) -\mu\frac{v_r}{r^2} +B_r
+$\\[0.8em]
+\vfill
+Navier-Stokes Equations in Cylindrical Coordinates (constant $\rho$, constant $\mu$):\\[0.3em]
+$
+\mfd\rho\left(\frac{\partial v_r}{\partial t} + v_r \frac{\partial v_r}{\partial r} + \frac{v_\theta}{r} \frac{\partial v_r}{\partial \theta} - \frac{v_\theta^2}{r} + v_x \frac{\partial v_r}{\partial x} \right) = B_r - \frac{\partial P}{\partial r} 
++ \frac{\mu}{r}\frac{\partial}{\partial r}\left(r \frac{\partial v_r}{\partial r}\right)
+   + \frac{\mu}{r^2} \frac{\partial^2 v_r}{\partial \theta^2} - \frac{2\mu}{r^2}\frac{\partial v_\theta}{\partial \theta}
+-\mu \frac{v_r}{r^2}
++ \mu \frac{\partial^2 v_r}{\partial x^2} 
+$\\[0.3em]
+$
+\mfd\rho\left(\frac{\partial v_\theta}{\partial t} + v_r \frac{\partial v_\theta}{\partial r} + \frac{v_\theta}{r} \frac{\partial v_\theta}{\partial \theta} + \frac{v_r v_\theta}{r} + v_x \frac{\partial v_\theta}{\partial x} \right) 
+= B_\theta - \frac{1}{r}\frac{\partial P}{\partial \theta} 
++ \frac{\mu}{r}\frac{\partial}{\partial r}\left(r \frac{\partial v_\theta}{\partial r} \right)
+   + \frac{\mu}{r^2} \frac{\partial^2 v_\theta}{\partial \theta^2} + \frac{2\mu}{r^2}\frac{\partial v_r}{\partial \theta}+ \mu \frac{\partial^2 v_\theta}{\partial x^2}
+- \mu \frac{v_\theta}{r^2}
+$\\
+$
+\mfd\rho\left(\frac{\partial v_x}{\partial t} + v_r \frac{\partial v_x}{\partial r} + \frac{v_\theta}{r} \frac{\partial v_x}{\partial \theta} + v_x \frac{\partial v_x}{\partial x} \right) = B_x - \frac{\partial P}{\partial x} + \frac{\mu}{r}\frac{\partial}{\partial r}\left(r \frac{\partial v_x}{\partial r} \right)
+   + \frac{\mu}{r^2} \frac{\partial^2 v_x}{\partial \theta^2} + \mu \frac{\partial^2 v_x}{\partial x^2}
+$\\
+~\\
+\vfill
+
+
+
+\newpage
+
+
+\vfill
+First law of thermodynamics in integral form:\\[0.5em]
+$\mfd \frac{{\rm d}}{{\rm d}t} \int_{V} \rho E {\rm d}V
++ \int_{S} (\rho E + P)(\vec{v}\cdot\vec{n}){\rm d}S=\dot{Q}-\dot{W}$\\[0.5em]
+with $E$ the total energy (i.e. $E\equiv e + q^2/2 + g H$) where $e$ is the internal energy of the fluid and $H$ the height from the ground.\\ 
+
+\vfill
+Energy equation in Cartesian coordinates:\\[0.5em]
+$
+\mfd \frac{\partial \rho E}{\partial t} + \frac{\partial \rho u H}{\partial x} + \frac{\partial \rho v H}{\partial y} + \frac{\partial \rho w H}{\partial z} 
+=
+ \frac{\partial}{\partial x}\left( k \frac{\partial T}{\partial x} \right) 
++\frac{\partial}{\partial y}\left( k \frac{\partial T}{\partial y} \right) 
++\frac{\partial}{\partial z}\left(k \frac{\partial T}{\partial z} \right) 
+$
+\\[0.3em]
+$
+~~~~~~~
+\mfd 
++\frac{\partial u \tau_{xx}}{\partial x}
++\frac{\partial u \tau_{yx}}{\partial y}
++\frac{\partial u \tau_{zx}}{\partial z}
++\frac{\partial v \tau_{xy}}{\partial x}
++\frac{\partial v \tau_{zy}}{\partial z}
++\frac{\partial v \tau_{yy}}{\partial y}
++\frac{\partial w \tau_{xz}}{\partial x}
++\frac{\partial w \tau_{yz}}{\partial y}
++\frac{\partial w \tau_{zz}}{\partial z}
+$\\[0.8em]
+\vfill
+Energy equation in Cartesian coordinates (constant $\rho$, constant $\mu$):\\[0.3em]
+$
+\mfd \rho \left(\frac{\partial e}{\partial t} + u \frac{\partial e}{\partial x} + v \frac{\partial e}{\partial y} + w \frac{\partial e}{\partial z} \right)
+=
+ \frac{\partial}{\partial x}\left(k \frac{\partial T}{\partial x} \right) + \frac{\partial}{\partial y}\left(k \frac{\partial T}{\partial y} \right) +\frac{\partial}{\partial z}\left(k \frac{\partial T}{\partial z} \right)
++       \mu \left(\frac{\partial u}{\partial x} \right)^2 
+	+ \mu \left(\frac{\partial u}{\partial y} \right)^2
+	+ \mu \left(\frac{\partial u}{\partial z} \right)^2
+$ \\[0.9em]
+~~~~~~~$\mfd
+	+ \mu \left(\frac{\partial v}{\partial x} \right)^2 
+	+ \mu \left(\frac{\partial v}{\partial y} \right)^2
+	+ \mu \left(\frac{\partial v}{\partial z} \right)^2
+	+ \mu \left(\frac{\partial w}{\partial x} \right)^2 
+	+ \mu \left(\frac{\partial w}{\partial y} \right)^2
+	+ \mu \left(\frac{\partial w}{\partial z} \right)^2
+$\\[0.8em]
+\vfill
+Energy equation in Axisymmetric coordinates (constant $\rho$, constant $\mu$):\\[0.3em]
+$
+\mfd \rho \left(\frac{\partial e}{\partial t} + u \frac{\partial e}{\partial x} + v \frac{\partial e}{\partial r}  \right)
+=
+  \frac{\partial }{\partial x}\left(k\frac{\partial T}{\partial x} \right) + \frac{1}{r} \frac{\partial }{\partial r} \left(kr \frac{\partial T}{\partial r} \right) 
++       \mu \left(\frac{\partial u}{\partial x} \right)^2 
+	+ \mu \left(\frac{\partial u}{\partial r} \right)^2
+	+ \mu \left(\frac{\partial v}{\partial x} \right)^2 
+	+ \mu \left(\frac{\partial v}{\partial r} \right)^2
+$\\[0.8em]
+In the latter, $e$ is the internal energy of the fluid (which can be taken equal to $c T$ for a calorically perfect gas or liquid), $\tau$ is the shear stress, $E$ the total energy equal to $e+\frac{1}{2} U^2$, $H$ the total enthalpy equal to $h+\frac{1}{2} U^2$, and $h$ the enthalpy equal to $e+P/\rho$. For a liquid, the heat capacity at constant volume $c$ is essentially the same as the heat capacity at constant pressure $c_p$.\\[1.0em]
+\vfill
+
+Conservation of energy in pipes (constant $\rho$, uniform $P$, $e$, and $H$ at entrance and exit):\\[0.5em]
+$\mfd \left( \frac{P_1}{\rho} + g y_1 + \frac{\alpha_1}{2} (u_{\rm b})_1^2\right)
+-\left( \frac{P_2}{\rho} + g y_2 + \frac{\alpha_2}{2} (u_{\rm b})_2^2\right)=h_{\rm L}$\\[0.5em]
+with $g$ the gravitational acceleration, $y$ the height from the ground, $\alpha$ the kinetic energy coefficient, and $h_{\rm L}$ the head loss. \\
+~\\
+
+\vfill
+
+
+
+Reynolds number: \\[0.4em]
+$\mfd {\rm Re}_L \equiv  \frac{\rho U L}{\mu} = \frac{{\rm rate~of~convection}~(\rho U)}{{\rm rate~of~viscous~diffusion}~(\mu/L)}$\\[0.5em]
+where $\rho$ is the density of the fluid in $\rm kg/m^3$, $U$ is the speed of the fluid in m/s, $L$ is a characterictic length in meters, and $\mu$ is the viscosity of the fluid in kg/ms. The flow becomes turbulent when  ${\rm Re}_L \gtrsim 5 \times 10^5$ for a flat plate, and when ${\rm Re}_D \gtrsim 2300$ for a pipe.\\
+\vfill
+Skin friction coefficient: \\[0.4em]
+$\mfd C_f \equiv  \frac{\tau_{\rm w}}{\frac{1}{2} \rho q_\infty^2}$ \\[0.5em]
+where $\tau_{\rm w}$ is the shear stress at the wall.\\
+\vfill
+Friction factor in pipes (Darcy friction factor): \\[0.4em]
+$\mfd f \equiv  \frac{4 \tau_{\rm w}}{\frac{1}{2} \rho u_{\rm b}^2}$ \\[0.5em]
+where $\tau_{\rm w}$ is the shear stress at the wall.\\
+\vfill
+Hydraulic Diameter:\\[0.5em]
+$\mfd D_{\rm H}=4 A_{\rm cs} / \xi$\\[0.5em]
+with $A_{\rm cs}$ the cross-section and $\xi$ the perimeter of the duct.\\
+\vfill
+
+\newpage
+
+
+
+
+Boundary layer thickness for flow over flat plates:\\[0.5em]
+\begin{tabular*}{\textwidth}{lll}
+\toprule
+\textbf{\em Flow regime} & \textbf{\em Restrictions / Comments} & \textbf{\em Equation} \\
+\midrule
+\begin{minipage}{1.1in}
+  Laminar 
+\end{minipage} 
+  & \begin{minipage}{3.2in}
+     ${\rm Re}_x< 5\cdot 10^5$
+    \end{minipage}
+  & $\mfd {\delta}/{x}=4.64 \cdot {\rm Re}_x^{-1/2}$\\
+\begin{minipage}{1.1in}
+  Turbulent 
+\end{minipage} 
+  & \begin{minipage}{3.2in}
+     ${\rm Re}_x< 10^7$~,~~ $\delta=0$~ at ~$x=0$
+    \end{minipage}
+  & $\mfd {\delta}/{x}=0.381 \cdot {\rm Re}_x^{-1/5}$\\
+\begin{minipage}{1.1in}
+  Turbulent 
+\end{minipage} 
+  & \begin{minipage}{3.2in}
+     ${\rm Re_{crit}}<{\rm Re}_x< 10^7$~,~~ ${\rm Re_{crit}}=5 \cdot 10^5$~,~~$\delta=\delta_{\rm lam}$~ at ~$\rm Re_{crit}$ 
+    \end{minipage}
+  & $\mfd {\delta}/{x}=0.381 \cdot {\rm Re}_x^{-1/5}-10256 \cdot {\rm Re}_x^{-1}$\\
+\bottomrule
+\end{tabular*}
+~\\
+\vfill
+
+
+
+
+Friction coefficient for flow over flat plates:\\[0.5em]
+\begin{tabular*}{\textwidth}{lll}
+\toprule
+\textbf{\em Flow regime} & \textbf{\em Restrictions / Comments} & \textbf{\em Equation} \\
+\midrule
+  Laminar,~local
+  & ${\rm Re}_x< 5\cdot 10^5$
+  & $\mfd C_{f}=0.647 \cdot {\rm Re}_x^{-1/2}$\\
+  Turbulent,~local
+  & $5\cdot 10^5 < {\rm Re}_x< 10^7$
+  & $\mfd C_{f}=0.0592 \cdot {\rm Re}_x^{-1/5}$\\
+  Turbulent,~local
+  & $10^7 < {\rm Re}_x< 10^9$
+  & $\mfd C_{f}=0.37 \cdot ({\rm ln}\,\, {\rm Re}_x)^{-2.584}$\\
+  Turbulent,~average
+  & ${\rm Re_{crit}} < {\rm Re}_x< 10^9$
+  & $\mfd \overline{C_{f}}=0.455 \cdot ({\rm ln}\,\, {\rm Re}_L)^{-2.584}-A \cdot {\rm Re}_L^{-1}$\\
+  & \begin{minipage}{3.2in}
+    ~\\[0.2em]
+      \begin{tabular}{@{}l@{~~~~:~~~~}llll@{}}
+       
+       ${\rm Re_{crit}}$ & $3\cdot 10^5$ & $5 \cdot 10^5$ & $10^6$  & $3\cdot 10^6$ \\
+       
+       $A$             & 1055          & 1742           & 3340    & 8940 \\       
+       
+     \end{tabular}
+    \end{minipage}
+  & ~\\
+\bottomrule
+\end{tabular*}\\[0.4em]
+~\\
+\vfill
+
+
+Friction factor for internal flow in a circular tube of length $L$ and diameter $D$:\\[0.5em]
+\begin{tabular*}{\textwidth}{lll}
+\toprule
+\textbf{\em Flow regime} & \textbf{\em Restrictions / Comments} & \textbf{\em Equation} \\
+\midrule
+  Fully-developed~laminar~flow
+  & 
+     Range of applicability: ${\rm Re}_D \lesssim 2300$. 
+  & $\mfd f={64}/{{\rm Re}_D}$\\
+\begin{minipage}{1.76in}
+  Fully-developed turbulent flow\\(smooth tubes)
+\end{minipage} 
+  & \begin{minipage}{2.92in}
+     Range of applicability: $2300 \lesssim {\rm Re}_D \lesssim 2 \times 10^4$.\\[0.3em]
+    \end{minipage}
+  & $\mfd f=0.316 \, {\rm Re}_D^{-1/4}$\\
+\begin{minipage}{1.76in}
+  Fully-developed turbulent flow\\(smooth tubes)
+\end{minipage} 
+  & \begin{minipage}{2.92in}
+     Range of applicability: ${\rm Re}_D \gtrsim 2 \times 10^4$.\\[0.3em]
+    \end{minipage}
+  & $\mfd f=0.184 \, {\rm Re}_D^{-1/5}$\\
+\begin{minipage}{1.76in}
+  Fully-developed turbulent flow\\(smooth tubes)
+\end{minipage} 
+  & \begin{minipage}{2.92in}
+     Range of applicability: $3000 \lesssim {\rm Re}_D \lesssim 5 \times 10^6$.\\[0.3em]
+    \end{minipage}
+  & $\mfd f=\left( 0.79 \, \ln ({\rm Re}_D) -1.64\right)^{-2}$\\
+\bottomrule
+\end{tabular*}\\[0.4em]
+For flow in ducts with a non-circular cross section, the above correlations can still be used provided the diameter $D$ is substituted by the hydraulic diameter\\
+\vfill
+
+
+Fluid Properties at 1 atm and 27$^\circ$C:\\[0.5em]
+\begin{tabular*}{\textwidth}{lcc}
+\toprule
+Fluid & density $\rho$, kg/m$^3$ & viscosity $\mu$, kg/ms \\
+\midrule
+Oxygen & 1.30 & $2.06 \cdot 10^{-5}$\\
+Nitrogen & 1.14 & $1.78 \cdot 10^{-5}$\\
+Air   & 1.20  & $1.84 \cdot 10^{-5}$ \\
+Water & 995.8 & $8.60 \cdot 10^{-4}$\\
+\bottomrule
+\end{tabular*}
+~\\
+~\\
+\vfill
+\newpage
+
+\vfill
+Standard value of the pressure in the atmosphere at sea-level:\\
+$
+\mfd
+P_{\rm atm}=\left\{ 
+\begin{array}{lll}
+1 & {\rm atm} & \textrm{(atmospheres)}\\
+759.81 & {\rm torr} & \textrm{(Torr)}\\
+14.7 & {\rm psi} & \textrm{(pounds per square inch)}\\
+101 & {\rm kPa} & \textrm{(kiloPascals)}\\
+760 & {\rm mmHg} & \textrm{(millimeters of mercury)}\\
+2116.8 & {\rm psf} & \textrm{(pounds per square foot)}
+\end{array}
+ \right.
+$
+\vfill\vfill\vfill
+\vfill\vfill\vfill
+\vfill\vfill\vfill
+\vfill\vfill\vfill
+\vfill\vfill\vfill
+~\\
+\newpage
+\includegraphics[width=\textwidth]{moody.pdf}
+
+
+
+\end{document}
+
+
+%%% new table
+Title:\\[0.5em]
+\begin{tabular*}{\textwidth}{lcc}
+\toprule
+Col1 title & Col2 title & Col3 title \\
+\midrule
+col1 & col2 & col3\\
+\bottomrule
+\end{tabular*}
+
+
+%%% new figure
+\includegraphics[width=\textwidth]{fig.pdf}
+
+
+%%% changing the array stretch 
+\renewcommand\arraystretch{1.3}
+
+

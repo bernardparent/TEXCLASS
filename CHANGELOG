@@ -1,0 +1,21 @@
+
+____________________________________________________________________________________________
+
+
+LATEXSTY CHANGELOG
+
+____________________________________________________________________________________________
+
+
+2019 APR 21a
+   * added README
+   * added LICENSE
+   * added gitnewversion_public.sh
+   * added removeproprietary.sh
+
+
+2018 JUL 30a
+   * in all .cls files
+     - added \RequirePackage{amsmath} just before calling the fonts (needed to prevent
+       errors with newer LaTeX and amsmath versions)
+

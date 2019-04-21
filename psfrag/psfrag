@@ -1,0 +1,86 @@
+#!/bin/bash
+
+
+#check that the number of arguments is correct; if not, give some help
+
+
+if [ "$#" -ne 1 ]; then
+  echo "
+Eg: 
+$0 figure1  
+will use figure1.tex and figure1.eps to create figure1.pdf
+
+where figure1.tex includes something similar to: 
+\scalefont{1.5}
+\psfrag{A}[r][r][1][0]{\begin{minipage}{0.15\textwidth}$\phi=0$~V\end{minipage}}
+\psfrag{B}[l][l][1][0]{\$B\$}
+" 
+  exit 1
+fi
+
+
+if [ ! -f $1.tex ]; then
+  echo "File $1.tex not found. Exiting."
+  exit 1
+fi
+
+if [ ! -f $1.eps ]; then
+  echo "File $1.eps not found. Exiting."
+  exit 1
+fi
+
+echo "\documentclass{article}
+\usepackage{graphicx}
+\usepackage{psfrag}
+\usepackage{scalefnt}
+
+% Use STIX instead of times: looks almost the same but avoids the bug of times font when used in conjunction with psfrag and a eps fig that also uses times
+  \IfFileExists{stix.sty}%
+  {
+    \RequirePackage[nomath]{stix}
+  }
+  {
+    \RequirePackage{times}  
+  }
+
+  \IfFileExists{mtpro2.sty}%
+  {
+    \RequirePackage{mtpro2}       % mathtimes pro 2 package (commercial)
+    \enablesubscriptcorrection
+    \DeclareMathSymbol{0}{\mathalpha}{operators}{\`0}\DeclareMathSymbol{1}{\mathalpha}{operators}{\`1}\DeclareMathSymbol{2}{\mathalpha}{operators}{\`2}\DeclareMathSymbol{3}{\mathalpha}{operators}{\`3}\DeclareMathSymbol{4}{\mathalpha}{operators}{\`4}\DeclareMathSymbol{5}{\mathalpha}{operators}{\`5}\DeclareMathSymbol{6}{\mathalpha}{operators}{\`6}\DeclareMathSymbol{7}{\mathalpha}{operators}{\`7}\DeclareMathSymbol{8}{\mathalpha}{operators}{\`8}\DeclareMathSymbol{9}{\mathalpha}{operators}{\`9}
+  }
+  {
+      \RequirePackage{txfonts}
+      \RequirePackage{amssymb}
+      \let\wtilde\tilde
+      \let\wbar\bar
+      \let\what\hat
+      \let\XL\displaystyle
+      \let\mathbold\bf
+      \let\overcbrace\overbrace
+      \let\undercbrace\underbrace
+ }
+
+
+
+
+\pagestyle{empty}
+
+\begin{document}
+" > $1.__psfrag.tex
+
+cat $1.tex >> $1.__psfrag.tex
+
+echo "
+\includegraphics[width=\textwidth]{$1.eps}
+
+\end{document}
+" >> $1.__psfrag.tex
+
+
+latex $1.__psfrag.tex
+dvips $1.__psfrag.dvi
+ps2pdf13 $1.__psfrag.ps
+pdfcrop $1.__psfrag.pdf
+mv $1.__psfrag-crop.pdf $1.pdf
+rm -f $1.__psfrag.*

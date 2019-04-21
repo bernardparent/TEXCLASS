@@ -1,0 +1,229 @@
+#!MC 800
+$!SETSTYLEBASE FACTORY
+$!FRAMELAYOUT 
+  SHOWBORDER = NO
+  HEADERCOLOR = RED
+  XYPOS
+    {
+    X = 1
+    Y = 0.25
+    }
+  WIDTH = 9
+  HEIGHT = 8
+$!FRAMEMODE  = XY
+$!DELETEXYMAPS 
+$!ACTIVEXYMAPS  =  [1-4]
+$!GLOBALXY 
+  DATALABELS
+    {
+    DISTANCESKIP = 5
+    }
+$!XYMAP  [1]
+  NAME = '&ZN&' 
+  ASSIGN
+    {
+    XAXISVAR = 1
+    YAXISVAR = 2
+    }
+  LINES
+    {
+    COLOR = RED
+    }
+  SYMBOLS
+    {
+    COLOR = RED
+    FILLCOLOR = RED
+    }
+  BARCHARTS
+    {
+    COLOR = RED
+    FILLCOLOR = RED
+    }
+  ERRORBARS
+    {
+    COLOR = RED
+    }
+$!XYMAP  [2]
+  NAME = '&ZN&' 
+  ASSIGN
+    {
+    ZONE = 2
+    XAXISVAR = 1
+    YAXISVAR = 2
+    }
+  LINES
+    {
+    COLOR = GREEN
+    }
+  SYMBOLS
+    {
+    COLOR = GREEN
+    FILLCOLOR = GREEN
+    }
+  BARCHARTS
+    {
+    COLOR = GREEN
+    FILLCOLOR = GREEN
+    }
+  ERRORBARS
+    {
+    COLOR = GREEN
+    }
+$!XYMAP  [3]
+  NAME = '&ZN&' 
+  ASSIGN
+    {
+    ZONE = 3
+    XAXISVAR = 1
+    YAXISVAR = 2
+    }
+  LINES
+    {
+    COLOR = BLUE
+    }
+  SYMBOLS
+    {
+    COLOR = BLUE
+    FILLCOLOR = BLUE
+    }
+  BARCHARTS
+    {
+    COLOR = BLUE
+    FILLCOLOR = BLUE
+    }
+  ERRORBARS
+    {
+    COLOR = BLUE
+    }
+$!XYMAP  [4]
+  NAME = '&ZN&' 
+  ASSIGN
+    {
+    ZONE = 4
+    XAXISVAR = 1
+    YAXISVAR = 2
+    }
+  LINES
+    {
+    COLOR = CYAN
+    }
+  SYMBOLS
+    {
+    COLOR = CYAN
+    FILLCOLOR = CYAN
+    }
+  BARCHARTS
+    {
+    COLOR = CYAN
+    FILLCOLOR = CYAN
+    }
+  ERRORBARS
+    {
+    COLOR = CYAN
+    }
+$!XYAXIS 
+  XDETAIL 1
+    {
+    AXISPOSITION = 14.15
+    RANGEMIN = 5.5
+    RANGEMAX = 16.5
+    GRSPACING = 2
+    TICKLABEL
+      {
+      TEXTSHAPE
+        {
+        FONT = TIMES
+        HEIGHT = 4
+        }
+      }
+    TICKS
+      {
+      LENGTH = 1
+      LINETHICKNESS = 0.2
+      }
+    MINORTICKS
+      {
+      LENGTH = 0.6
+      }
+    TITLE
+      {
+      TITLEMODE = USETEXT
+      TEXT = 'X' 
+      OFFSET = 7
+      }
+    }
+$!XYAXIS 
+  YDETAIL 1
+    {
+    AUTOGRID = NO
+    AXISPOSITION = 18.95
+    RANGEMIN = 0
+    RANGEMAX = 13000
+    GRSPACING = 2000
+    TICKLABEL
+      {
+      TEXTSHAPE
+        {
+        FONT = TIMES
+        HEIGHT = 4
+        }
+      }
+    TICKS
+      {
+      LENGTH = 1
+      LINETHICKNESS = 0.2
+      }
+    MINORTICKS
+      {
+      LENGTH = 0.6
+      }
+    TITLE
+      {
+      TITLEMODE = USETEXT
+      TEXT = 'Y' 
+      OFFSET = 12
+      }
+    }
+$!XYAXIS 
+  GRIDAREA
+    {
+    EXTENTS
+      {
+      X1 = 18.948
+      Y1 = 14.154
+      X2 = 93.948
+      Y2 = 91.154
+      }
+    DRAWBORDER = YES
+    TICKSALLSIDES = YES
+    }
+  DEPXTOYRATIO = 1
+$!ATTACHTEXT 
+  XYPOS
+    {
+    X = 63.7328605201
+    Y = 62.3215584652
+    }
+  TEXT = 'A' 
+$!ATTACHTEXT 
+  XYPOS
+    {
+    X = 71.0803782506
+    Y = 45.761383888
+    }
+  TEXT = 'B' 
+$!ATTACHTEXT 
+  XYPOS
+    {
+    X = 80.0023640662
+    Y = 31.1726586652
+    }
+  TEXT = 'C' 
+$!ATTACHTEXT 
+  XYPOS
+    {
+    X = 84.5508274232
+    Y = 24.2725859247
+    }
+  TEXT = 'D' 
+$!SETSTYLEBASE CONFIG

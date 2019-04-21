@@ -1,0 +1,360 @@
+%% options available are 10pt,11pt,12pt and oneside,twoside, and mtpro
+\documentclass[10pt,twoside]{waflthesis}
+
+
+\newlength\lengthfigure                  % declare a figure width unit
+\setlength\lengthfigure{0.158\textwidth} % make the figure width unit scale with the textwidth
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%=--USER ADDITIONAL PACKAGES--=%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{psfig}
+\usepackage{subfigure}
+\usepackage{rotating}
+\usepackage{pstricks}
+\usepackage[innercaption]{sidecap} % the cute space-saving side captions
+\usepackage{scalefnt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%=--USER NEW COMMANDS--=%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\mfa}{\scriptscriptstyle}
+\newcommand{\mfb}{\scriptstyle}
+\newcommand{\mfc}{\textstyle}
+\newcommand{\mfd}{\displaystyle}
+\newcommand{\alb}{\vspace{0.1cm}\\} % array line break
+\newcommand{\Cp}{{C_{P}}}
+\newcommand{\nd}{d}
+\newcommand{\CFL}{{\rm CFL}}
+\newcommand{\bb}{{b_{\rm b}}}
+\newcommand{\br}{{b_{\rm r}}}
+\newcommand{\loope}{{\rm e}}
+\newcommand{\loops}{{\rm s}}
+\newcommand{\loopE}{{\rm E}}
+\newcommand{\loopS}{{\rm S}}
+\newcommand{\xiverge}{{\xi_{\rm verge}}}
+\newcommand{\kdiv}{{k_{\rm div}}}
+\newcommand{\varphiverge}{{\varphi_{\rm verge}}}
+\newcommand{\ximax}{{\xi_{\rm max}}}
+\newcommand{\turb}{_{\rm t}}
+\newcommand{\mut}{\mu\turb}
+\newcommand{\wall}{_{\rm wall}}
+\newcommand{\minmod}{{\rm minmod}}
+\newcommand{\Mt} {{\rm M}\turb}
+\newcommand{\Prt}{{\rm Pr}\turb}
+\newcommand{\bigfrac}{\displaystyle\frac}
+\newcommand{\krodel}{\delta^{\rm K}}
+\newcommand{\ie}{{\it i.e.}}
+\newcommand{\etal}{{\it et al.}}
+\newcommand{\etc}{{\it etc.}}
+\newcommand{\apriori}{{\it a priori}}
+\newcommand{\pseudot}{\tau}
+\newcommand{\mc}{\multicolumn}
+\newcommand{\cc}{\multicolumn{1}{c}}
+\newcommand\subdomain[3]{$ | \! | \, #2 $ $\Leftrightarrow$ $#3 \, | \! |_{#1}$}
+\newcommand\subdomainshort[2]{$| \! | \, #2 \, | \! |_{#1}$}
+\newcommand{\Cv}{{C_{\rm v}}}
+\newcommand{\MC}{{\rm M}_{\rm c}}
+\newcommand{\Cf}{C_{\rm f}}
+\newcommand{\Sct}{{{\rm Sc}_{\rm t}}}
+\newcommand{\ns}{{{n}_{\rm s}}}
+\newcommand{\dd}{\; {\rm d}}
+\newcommand\frameeqn[1]{\fbox{$\displaystyle #1$}}
+\newcommand{\ordi}{\; {\rm d}}
+\newcommand{\mdot}{\dot{m}}
+\newcommand{\mdotengine}{\dot{m}_{\rm engine}}
+\newcommand{\mdotairengine}{\dot{m}_{\rm air,~engine}}
+\newcommand{\thetac}{\theta_{\rm c}}
+\newcommand{\thetae}{\theta_{\rm e}}
+\newcommand{\Lf}{L_{\rm f}}
+\newcommand{\FbodyP}{\vec{\cal F}_{{\rm \!\!\! body},\,P\,}}
+\newcommand{\Fbodyshear}{\vec{\cal F}_{{\rm \!\!\! skin~friction\,}}}
+\newcommand{\Fpot}{{\cal F}_{\rm \!\!\! pot}}
+\newcommand{\Fpotref}{{\cal F}_{\rm \!\!\! pot,\, ref\, }}
+\newcommand{\Linj}{L_{\rm inj}}
+\newcommand{\Hfuel}{H_{\rm fuel}}
+\newcommand{\Darray}{D_{\rm array}}
+\newcommand{\Ld}{\Darray}
+\newcommand{\Dfuel}{D_{\rm fuel}}
+\newcommand{\Linlet}{L_{\rm inlet}}
+\newcommand{\Hinlet}{H_{\rm inlet}}
+\newcommand{\Ddomain}{D_{\rm inlet}}
+\newcommand{\etam}{\eta_{\rm m}}
+\newcommand{\yplus}{y^{+}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%=--USER INPUT--=%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\degree{
+  Doctor of Philosophy
+}
+
+\department{
+  Graduate Department of Aerospace Science and Engineering
+}
+
+\author{
+  Bernard Parent
+}
+
+\email{
+  bernard.parent@utoronto.ca
+}
+
+%\setlength\titlewidth{\hsize}         % optional, default is \hsize
+\title{
+  Computational Study of Fuel Injection in a Shcramjet Inlet 
+}
+
+\graduationyear{
+  2002
+}
+
+\institution{
+  University of Toronto
+}
+
+%\setlength\dedicationwidth{0.5\hsize}         % optional, default is 0.5\hsize
+\dedication{
+  Dedicated to ..
+}
+
+
+%\setlength\abstractaffiliationwidth{0.75\hsize}         % optional, default is 0.75\hsize
+% abstract should be 350 words max for doctoral theses, 150 words max for masters theses
+\abstract{
+  The primary objective of this investigation is to present the mixing of fuel
+  with air in the inlet of a shock-induced combustion ramjet (shcramjet).
+  The study is limited to non-reacting hydrogen-air mixing in an
+  external-compression inlet at a flight Mach number of 11 and at a
+  dynamic pressure of 1400~psf (67032~Pa), using an array of cantilevered ramp
+  injectors. A numerical method based on the Yee-Roe scheme and block-implicit
+  approximate factorization is developed to solve the FANS equations closed
+  by the Wilcox $k\omega$ turbulence model. A new acceleration technique
+  for streamwise-separated hypersonic flow, dubbed the ``marching window'', is presented.
+  The dilatational dissipation correction is seen to affect the mixing efficiency
+  considerably for a cantilevered ramp injector flowfield even at a vanishing convective
+  Mach number, due to the high turbulent Mach number generated by the high cross-stream
+  shear induced by the ramp-generated axial vortices.
+  Due to the fuel being injected at a very high speed, fuel injection in the inlet
+  is found to increase considerably the thrust potential, with a
+  gain exceeding the loss by 40--120\%.
+  Losses due to skin friction are seen to play a significant role in the
+  inlet, as they are estimated to make up as much as 50--70\% of the thrust potential
+  losses. The use of a turbulence model that can predict accurately the wall
+  shear stress is hence crucial in assessing the losses accurately in a shcramjet
+  inlet. Substituting the second inlet shock by a Prandtl-Meyer compression
+  fan is encouraged as it decreases the thrust potential
+  losses, reduces the risk of premature ignition by reducing the static temperature,
+  while decreasing the mixing efficiency by a mere 6\%.
+  One approach that is observed herein to be successful at increasing
+  the mixing efficiency in the inlet is by alternating the injection angle along
+  the injector array. The use of two injection angles of 9 and 16 degrees
+  is seen to result in a 32\% increase in the mixing efficiency at the expense
+  of a 14\% increase in the losses when compared to a single injection
+  angle of 10 degrees.  Using alternating injection angles, the mixing efficiency
+  reaches as much as 0.47 at the inlet exit.
+}
+
+
+
+
+\acknowledgements{
+  First and foremost, I am obliged to... and would like to thank....
+}
+
+%\setlength\nomenclaturelabelwidth{0.13\hsize}  % optional, default is 0.03\hsize
+%\setlength\nomenclaturecolumnsep{0.09\hsize}  % optional, default is 0.06\hsize
+\nomenclature{
+
+  \begin{nomenclaturelist}{Roman symbols}
+   \item[$a$]          speed of sound
+   \item[$A$]          area
+   \item[$A$]          Jacobian of $F$ with respect to $Q$
+   \item[$B$]          Jacobian of $G$ with respect to $Q$
+   \item[$c$]          mass fraction
+   \item[$C$]          Jacobian of $S$ with respect to $Q$
+   \item[$C_{\rm f}$]  skin friction coefficient, $2 \tau_{\rm w} / \rho_\infty q_\infty^2$
+   \item[$\nd$]        number of dimensions
+   \item[$\Darray$]    injector array spacing
+   \item[$\Ddomain$]   depth of the domain
+   \item[$\Dfuel$]     depth of the fuel jet
+   \item[$e$]          internal energy
+   \item[$E$]          total energy, $e+k+q^2/2$
+   \item[$F$]          convection flux vector
+   \item[$g_\omega$]   factor in the determination of $\omega_\infty$, \ie\ $\omega_\infty=g_\omega q_\infty$
+   \item[$G$]          vector of diffusion variables
+   \item[$h_k$]        enthalpy of species $k$
+   \item[$\Hfuel$]     height of the fuel jet
+   \item[$\Hinlet$]    height of the inlet
+   \item[$j$]          $(\gamma-1)/\gamma$
+   \item[$J$]          metric Jacobian
+   \item[$k$]          turbulence kinetic energy
+   \item[$K$]          diffusion matrix
+   \item[$l_{\rm int}$]  length per unit depth of the fuel-air interface
+   \item[$L$]          matrix of left eigenvectors
+   \item[$L^{-1}$]     matrix of right eigenvectors
+   \item[$\Linlet$]    length of the inlet
+   \item[$\Linj$]      length of the injector
+   \item[$\Lf$]        length of incoming flat plate prior to injection
+   \item[$\mdot$]      mass flow rate
+   \item[$\mdotengine$]   mass flow rate in the engine
+   \item[$\mdotairengine$]  mass flow rate of air in the engine
+   \item[${\rm M}$]    Mach number
+   \item[$\MC$]        convective Mach number, \ie\ $\left(q_1-q_2\right)/\left(a_1+a_2\right)$
+   \item[${\rm M}\turb$]       turbulent Mach number, $\sqrt{2k}/a$
+   \item[$\ns$]        number of species
+   \item[$P$]          pressure
+   \item[$P^\star$]    effective pressure, $P+\frac{2}{3}\rho k$
+   \item[$P_k$]        production of turbulence kinetic energy
+   \item[Pr]          Prandtl number
+   \item[$q$]          magnitude of the velocity vector
+   \item[$Q$]          vector of conserved variables
+   \item[$r$]          mesh dimensions factor
+   \item[$R$]          residual
+   \item[$R$]          gas constant
+   \item[$R_\Delta$]   discretized residual
+   \item[Re]          Reynolds number
+   \item[$s$]          non-dimensional cross-stream coordinate of the mixing layer
+   \item[$S$]          vector of source terms
+   \item[Sc]          Schmidt number
+   \item[$t$]          time
+   \item[$T$]          temperature
+   \item[$u$]         velocity component along $x$
+   \item[$v$]          velocity vector
+   \item[$v$]          velocity component along $y$
+   \item[$V$]          contravariant velocity vector
+   \item[$x$]          Cartesian coordinate vector
+   \item[$x$]          Cartesian coordinate corresponding to $x_1$
+   \item[$X$]          curvilinear coordinate
+   \item[$X_{i,j}$]    $\partial X_i / \partial x_j$
+   \item[$y$]          Cartesian coordinate corresponding to $x_2$
+   \item[$y^{+}$]      non-dimensional wall distance, $\frac{y}{\mu}\sqrt{\rho \tau_{\rm w}}$
+   \item[$z$]          Cartesian coordinate corresponding to $x_3$
+  \end{nomenclaturelist}
+
+  \begin{nomenclaturelist}{Greek symbols}
+   \item[$\gamma$]         ratio of the specific heats
+   \item[$\delta_{ij}^{\rm Kr}$]  Kronecker delta
+   \item[$\delta_{\rm m}$]  height of the mixing layer
+   \item[$\Delta \tau$]    local pseudo time step
+   \item[$\epsilon$]       dissipation rate of the TKE
+   \item[$\eta_{\rm m}$]   mixing efficiency
+   \item[$\thetac$]        injector compression angle
+   \item[$\thetae$]        injector expansion angle
+   \item[$\kappa$]         thermal conductivity
+   \item[$\lambda$]        matrix of eigenvalues
+   \item[$\mu$]            viscosity
+   \item[$\nu$]            mass diffusion coefficient
+   \item[$\xi$]            convergence criterion
+   \item[$\xiverge$]       user-defined convergence criterion threshold
+   \item[$\rho$]           density
+   \item[$\tau$]           pseudo time
+   \item[$\tau_{\rm w}$]   wall shear stress
+   \item[$\phi$]           equivalence ratio
+   \item[$\phi_{\rm g}$]   global equivalence ratio
+   \item[$\phi_0$]         user-specified number of streamwise grid lines in the
+                           residual monitor subregion of the active domain
+   \item[$\phi_1$]         user-specified maximum zone length, when using multizone
+                           decomposition
+   \item[$\phi_2$]         user-specified minimum number of iterations before
+                           advancing the downstream boundary of the marching window
+   \item[$\phi_3$]         user-specified minimum streamwise grid lines in the
+                           marching window
+   \item[$\varphi$]        streamwise ellipticity sensor
+   \item[$\varphiverge$]   user-defined streamwise ellipticity sensor threshold
+   \item[$\psi$]           sweeping angle
+   \item[$\omega$]         dissipation rate per unit of TKE
+  \end{nomenclaturelist}
+
+  \begin{nomenclaturelist}{Subscripts}
+   \item[a]            engine inlet
+   \item[b]            station of interest
+   \item[c]            engine outlet
+   \item[e]            state of vanishing pressure
+   \item[t]            turbulent
+   \item[w]            wall
+   \item[$\infty$]     freestream
+  \end{nomenclaturelist}
+
+  \begin{nomenclaturelist}{Superscripts}
+   \item[$\rm D$]        diagonal
+   \item[$\rm R$]        reacting
+   \item[$\rm S$]        stoichiometric
+   \item[$\star$]        sum of the molecular and turbulent counterparts
+   \item[$\circ$]        stagnation
+  \end{nomenclaturelist}
+
+  \begin{nomenclaturelist}{Calligraphic symbols}
+   \item[$\FbodyP$]      body force vector due to pressure
+   \item[$\Fbodyshear$]  body force vector due to skin friction
+   \item[$\Fpot$]        thrust potential
+   \item[$\Fpotref$]     reference thrust potential, normally calculated at the engine inlet
+  \end{nomenclaturelist}
+
+  \begin{nomenclaturelist}{Acronyms}
+   \item[CFD]      \emph{c}omputational \emph{f}luid \emph{d}ynamics
+   \item[CFL]      \emph{C}ourant-\emph{F}riedrichs-\emph{L}ewy number
+   \item[DNS]      \emph{d}irect \emph{n}umerical \emph{s}imulation
+   \item[FANS]     \emph{F}avre-\emph{a}veraged \emph{N}avier-\emph{S}tokes equations
+   \item[LHS]      \emph{l}eft \emph{h}and \emph{s}ide
+   \item[MPI]      \emph{m}essage \emph{p}assing \emph{i}nterface
+   \item[PNS]      \emph{p}arabolized \emph{N}avier-\emph{S}tokes equations
+   \item[RANS]     \emph{R}eynolds-\emph{a}veraged \emph{N}avier-\emph{S}tokes equations
+   \item[RHS]      \emph{r}ight \emph{h}and \emph{s}ide
+   \item[RNS]      \emph{r}educed \emph{N}avier-\emph{S}tokes equations
+   \item[TKE]      \emph{t}urbulence \emph{k}inetic \emph{e}nergy
+   \item[UTIAS]    \emph{u}niversity of \emph{T}oronto \emph{i}nstitute for \emph{a}erospace \emph{s}tudies
+   \item[VNN]      \emph{v}on \emph{N}eumann \emph{n}umber
+   \item[WARP]     \emph{w}indow-\emph{a}llocatable \emph{r}esolver for \emph{p}ropulsion
+  \end{nomenclaturelist}
+
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%=--DOCUMENT--=%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+  %%%%%%%=--preliminaries--=%%%%%%%
+  \makewafltitle
+  %\maketitle
+  \pagenumbering{roman}
+  \pagestyle{plain}    % SGS guidelines: page numbering should be at the bottom center for the preliminaries
+  \pagestyle{headings}
+  \setcounter{page}{2} % SGS guidelines: abstract must be page ii or more
+  \makeabstract
+  \linespread{1.2} % 1.2-1.25 is recommended 
+  \tableofcontents
+  %\listoffigures
+  %\listoftables
+  \makenomenclature
+  \makeacknowledgements
+  \makededication
+
+  %%%%%%%=--main text--=%%%%%%%
+  \newpage
+  \pagenumbering{arabic}
+  \pagestyle{headings}  
+  \setcounter{page}{1}
+  \input{chapter1}  % introduction
+% add a chapter about the governing equations (the physical model)
+  \input{chapter3}  % numerical method
+%% add a chapter about numerical and physical error 
+%% add a chapter about the results and their analysis 
+  \input{chapter6}  % conclusions
+
+  %%%%%%%=--appendix--=%%%%%%%
+  \appendix
+  \input{appendixA}
+
+  %%%%%%%=--bibliography--=%%%%%%%
+  % the next line is to cite papers that may are not cited in the text
+  \nocite{jcp:2002:parent,aiaaconf:2001:parent,aiaa:2002:parent,aiaa:2003:parent,aiaa:2003:parent:2,
+          jpp:2003:sislian,aiaaconf:2002:sislian}
+  \bibliographystyle{waflthesis}
+  \bibliography{aiaa,jpp,jfm,jcp,nasa,cf,misc,book,thesis,vki}
+
+\end{document}
+

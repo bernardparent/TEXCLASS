@@ -1,0 +1,15 @@
+#!/usr/local/bin/soap
+
+Tflight=240;
+Mflight_start=6;
+Mflight_end=16;
+Mcombustor=6.0;
+gam=1.4;
+
+
+for (i,0,100,
+  Mflight=Mflight_start+(Mflight_end-Mflight_start)/101*i;
+  Tstag=Tflight*(1+(gam-1)/2*Mflight^2);
+  Tcomb=Tstag/(1+(gam-1)/2*Mcombustor^2);
+  printf("%E  %E\n",Mflight,Tcomb);
+);

@@ -1,0 +1,396 @@
+\begin{chapterquote}
+   ``(..) I realized that actually doing physics is much more enjoyable than just
+   learning it. Maybe 'doing it' is the right way of learning, at least as far as
+   I am concerned. ''
+  \quoteauthor{Gerd Binnig, Nobel Prize Laureate in Physics, 1986}
+\end{chapterquote}
+
+\chapter{Conclusions}
+
+\section{Numerical considerations}
+
+A multi-species, multi-dimensional, steady-state, and time-accurate numerical method
+is developed to solve the Favre-averaged Navier-Stokes equations closed by the
+Wilcox $k\omega$ model. The flux discretization is based on the Yee-Roe scheme
+and the pseudotime stepping on block-implicit approximate factorization.
+The Wilcox $k\omega$ model along with the Wilcox dilatational dissipation
+are deemed adequate in capturing the essentials of the
+flowfield physics and good agreement is shown with the
+experimental data of a ramp injector by Waitz {\it et al.} \cite{aiaa:1993:waitz}
+and a swept ramp injector by Donohue {\it et al.} \cite{aiaa:1994:donohue}.
+For a typical cantilevered ramp
+injector flowfield over a flat plate, a grid refinement study is performed
+and a relative error of approximately 10--15\% on the mixing efficiency is estimated
+for the baseline mesh (using a grid dimensions factor $r=1$). The grid-induced
+error for the three-dimensional cantilevered ramp injector flowfields is here estimated
+by comparing the effect of the grid to similar two-dimensional
+mixing problems where the grid can be refined sufficiently. \emph{The Richardson extrapolation
+is here observed to be inadequate in determining the grid-induced error of
+a mixing layer problem, due to the discontinuous turbulent/non-turbulent interface.}
+The influence of the turbulent Schmidt number on the mixing
+efficiency is seen to be minimal for a hydrogen-air mixing problem, as the mixing
+efficiency increases by only 8\% for a turbulent Schmidt number variation from 1.0 to 0.25.
+The use of the Yee entropy correction factor in conjunction with the Roe scheme
+is found to be unnecessary for the inlet flowfields and its use
+should be avoided as it increases significantly the numerical error in the mixing layer.
+
+
+\section{Marching window acceleration technique}
+
+Dubbed the marching window, a novel acceleration technique is presented which
+is aimed at accelerating the convergence of the Favre-averaged Navier-Stokes
+equations in the supersonic/hypersonic regime for flowfields with large streamwise
+separated flow regions. Similarly to the active domain method \cite{aiaa:1997:nakahashi},
+the marching window iterates in pseudotime a band-like computational domain of minimal
+width which adjusts to the size of the streamwise elliptic regions when encountered.
+However, in contrast to the active domain method, it is shown that \emph{the marching window
+guarantees the residual on all nodes to be below a user-defined convergence
+threshold when convergence
+is reached}, and hence results in the same
+converged solution (within the tolerance of the convergence criterion) as the
+one obtained by standard pseudotime marching methods. Further,
+a streamwise ellipticity sensor based on the Vigneron splitting
+\cite{aiaaconf:1978:vigneron} is developed which ensures
+the downstream boundary of the marching window to advance sufficiently
+such that regions of significant streamwise
+ellipticity are contained within the marching window subdomain.
+It is noted that while the Vigneron splitting sensor does not capture all possible
+streamwise elliptic phenomena, this does not affect the accuracy of the final solution
+and only affects the performance of the marching window as an acceleration
+technique. Also, a multizone decomposition is implemented inside the marching window
+to restrict the computing to the zones where the residual is above the user-defined
+threshold. This is shown to further decrease the work needed for convergence by close to
+2 times for the test cases shown in Chapter \ref{chapter:numerical_method}.
+
+
+The use of the marching window with multizone decomposition
+on a backward facing step and a shock boundary
+layer interaction flowfield (where one or several large streamwise separated region
+is present) reveals a 4 to 6 times decrease in storage and a 4 to 8 times
+decrease in work compared to the standard cycle.
+The proposed algorithm is also shown to work well at
+a low CFL number in regions of quasihyperbolicity/parabolicity
+and is recommended for stiff
+problems with high non-linear stability restrictions on the time step size.
+For the inlet cases presented in Chapter ..., the marching window
+with multizone decomposition results in convergence attained in typically less than
+200 effective iterations using a CFL number of 0.6.
+A variant of the marching window designed for time-accurate simulations
+is observed to result in a fivefold reduction in storage and 25\% reduction in work
+for the time-accurate exploding cavity case investigated in Chapter
+\ref{chapter:numerical_method}.
+The reduction in computational work through the use of the marching window
+is made possible by focusing the
+high number of iterations needed to converge the streamwise
+separated regions to the region in question, and not to the
+entire computational domain. The amount of storage needed is also significantly
+reduced if no memory is allocated to the nodes outside of the marching window subdomain.
+
+
+\emph{The marching window does not impose any restriction
+on the discretization stencils part of the residual or on the pseudotime
+stepping method.}  While not implemented here,
+the numerous acceleration techniques available for pseudotime
+stepping (such as multigrid, block relaxation \cite{aiaa:2000:denicola},
+preconditioning, Newton-Krylov, \etc) can be used in conjunction with
+the marching window.
+Furthermore, the marching window is not limited to the Favre-averaged
+Navier-Stokes equations and its application to other fields of physics
+where a quasihyperbolicity of the system is present would only
+require a redefinition of the ellipticity sensor shown in Eq.~(...).
+
+
+The ellipticity threshold constant $\varphiverge$ and the marching window
+minimal width $\phi_3$ are seen to affect the performance of the algorithm
+significantly, and it is unclear at this stage by how much these
+parameters would need to be altered for very different flow properties and physical domain size.
+The dependency on the problem setup seems not too severe as the same
+values for the user-specified constants are used for all inlet cases, with a resulting
+similar convergence rate.
+
+
+
+\section{Thrust potential}
+
+The losses and the gains in the flowfields presented herein are assessed
+mostly by the air-based mixing efficiency and by the thrust potential. It is
+recalled that the thrust potential at a certain station corresponds
+to the thrust of the vehicle obtained if the flow is reversibly expanded
+from the station in consideration to either the engine exit area or the engine
+back pressure.
+In Chapter ..., it is shown that the thrust potential
+can be expressed as a function
+of the stagnation pressure, stagnation temperature, and backpressure
+of the engine. While limited to a perfect gas, Eq.~(...)
+shows that losses or gains in an engine cannot be determined solely by monitoring the
+stagnation pressure.
+This is confirmed by the inlet cases presented herein: at the station where
+fuel is injected, the thrust potential increases significantly due to
+the high momentum of the fuel injected while the mass flux averaged stagnation pressure
+decreases. Another conclusion drawn from Eq.~(...) is that the
+thrust potential can be expressed solely as a function of the stagnation temperature
+and the ratio between the stagnation pressure and the backpressure. Hence, it follows
+that \emph{variations
+in the backpressure impact the thrust potential to the same degree as variations
+in stagnation pressure}.
+In a scramjet or a shcramjet engine, the flow is typically underexpanded, and
+the backpressure of the engine is known to be significantly higher than the surroundings.
+Expanding the flow to a fixed backpressure equal to the surroundings would hence
+lead to significant errors in the thrust potential.
+Therefore, the thrust potential is here determined by reversibly expanding the
+flow to an iteratively determined backpressure, which is such that the cross-sectional
+area of the expanded flow corresponds to the engine exit area. It is noted
+that the same backpressure is shared by all streamtubes at one particular
+station. In this way, we avoid errors originating
+from a fixed backpressure and errors related to unrealistic
+backpressure variations that would occur when expanding the flow to a constant area.
+For a typical inlet flowfield, the backpressure is seen to increase by approximately
+2.5 times while the mass-flux averaged stagnation pressure decreases by 4 times.
+\emph{The similar observed changes in the backpressure and the stagnation
+pressure shows the importance of accurately determining the backpressure when assessing
+the losses in a shcramjet inlet}.
+
+\section{Fundamental mixing studies}
+
+%mention the conclusions from the parametric study of mixing enhancement by compression
+To predict the mixing efficiency increase through a compression wave, an expression
+is derived for the special case of hypersonic flow at a high convective Mach number.
+In such conditions, it is seen that two assumptions can be made: (i)
+the speed of the fuel and air streams
+remain constant through the compression and (ii) the density increase of the air
+corresponds to the density increase of the fuel through the compression. From these
+two assumptions, it is then shown in the mixing efficiency growth
+equation [\ie\ Eq.~(...)]
+that \emph{the mixing efficiency growth is proportional to the product
+of the flow density, the interface length, and the Papamoschou-Roshko correction
+term.} Noting that the Papamoschou-Roshko correction term decreases for decreasing
+temperature, this shows one of the major challenges of mixing in the inlet.
+\emph{The very low flow density and flow temperature
+lead to a very low mixing
+efficiency growth in a shcramjet inlet, as compared to the mixing efficiency growth
+that could be obtained in the combustor, where the temperature and the density are high.}
+With the help of the derived mixing efficiency growth,
+the separate effect of interface stretching due to vorticity is assessed
+for a mixing layer traversing an oblique shock and a mixing layer traversing
+a Prandtl-Meyer compression fan. It is observed that \emph{the higher density induced
+by the compression fan leads to a greater increase in the mixing efficiency growth,
+despite the more vigorous interface stretching by the axial vortices induced
+by the oblique shock.}
+
+
+% fundamental study of importance of ramp-induced axial vortices
+The increase in mixing efficiency generally associated to ramp-like injector
+configurations compared to planar mixing configurations is also analyzed.
+A comparison is performed between the mixing efficiency
+obtained from a planar mixing configuration, a free jet configuration
+and a cantilevered ramp injector configuration.
+It is seen that, at a convective Mach number of 1.5 and at a global
+equivalence ratio of 1, the mixing efficiency of a cantilevered ramp injector
+is as much as 4 times the one of a planar
+configuration. This fourfold increase is attributed to, in order of importance:
+(i) the increased fuel/air interface length present in 3D, (ii) the higher
+pressure and temperature present at injection, and (iii) the stretching of the fuel/air
+interface by the axial vortices.
+
+
+\section{Mixing over a flat plate}
+
+%chapter 6
+
+
+A parametric study of the effect of the fuel inflow conditions on the mixing
+performance of a cantilevered ramp injector  is performed.
+It is found that, while keeping the fuel speed and fuel pressure constant, increasing
+the global
+equivalence ratio from 1 to 3 translates into a 30\% increase in the mixing efficiency,
+but results in a large portion
+of the mixture at the domain exit to be outside the hydrogen/air flammability limits.
+On the other hand, reducing the global equivalence ratio from 1 to 0.33 reduces the mixing
+efficiency by 27\%
+and induces a high mixture temperature which is beneficial if burning
+is desired close to the injection point, but undesirable otherwise. If burning
+is not desired near the point of injection, injecting the fuel in stoichiometric
+proportions with the incoming air is the recommended approach.
+Secondly, keeping the global equivalence ratio and the fuel pressure constant,
+the convective Mach number is varied from -0.5 to 1.5, with a negative value indicating
+a fuel speed smaller than the air speed. This increase in the convective
+Mach number is seen to result in a mixing efficiency increase
+of 31\%  while the mass averaged stagnation pressure
+decreases by only 10\%. In the near field mixing region,
+the convective Mach number has a negligible impact on the mixing efficiency if using
+the Wilcox dilatational dissipation. This is
+shown to be related to a limitation of the turbulent mixing layer growth
+due to compressibility effects occurring at a high turbulent Mach number.
+Even when the convective Mach number is 0, a high turbulent Mach number is
+present in the near field due to the high local shear stresses
+induced by the axial vortices. Due to the presence of a high turbulent Mach number,
+the dilatational dissipation reduces considerably the growth of the mixing layer.
+The use of the Wilcox dilatational dissipation correction results in a decrease
+of the near field mixing efficiency of 25\% and 43\% for a convective
+Mach number of 0 and 1.5, respectively.
+Thus, one major finding of this thesis is that \emph{the dilatational dissipation
+correction affects the mixing efficiency considerably for a cantilevered
+ramp injector flowfield, even at a vanishing convective Mach number.}
+
+
+
+
+A parametric study of the variation of the injector array spacing shows that
+the mixing efficiency at the domain exit is maximal for an array
+spacing equal to the height of the injector. Reducing the spacing diminishes
+considerably the axial vortices
+strength but increases the interface length at the point
+of injection. The rate of growth of the mixing efficiency in the nearfield is observed
+to be directly related to the interface length at injection. The
+decrease in the axial vortices strength at a small array spacing prevents
+enough air from being entrained under the fuel jet, resulting in a
+combustible mixture present in the boundary layer.
+Due to the higher shock strength present above the injector array, a high angle of injection
+translates into significantly more losses: injecting the fuel at 16$^\circ$
+results in a twofold increase in the thrust potential losses compared to injection
+at 4$^\circ$, with an associated increase in mixing efficiency
+of 9\%.
+
+A change in the fuel inflow conditions is observed not to affect the capability of
+the cantilevered ramp injector at preventing the injectant from entering the
+hot boundary layer. However, a change in the injector geometry
+is found to result sometimes in
+hydrogen entering the boundary layer. This is attributed to the amount of air separating
+the fuel from the wall being strongly dependent on the injector geometry.
+The reduction in the air mass flow rate separating the fuel jet from the wall
+ is seen to be partly due to weakened
+axial vortices and/or to a lower air mass flux flowing under the fuel at the point
+of injection. It is observed that an air cushion between the wall and the
+hydrogen is sufficiently thick to prevent fuel in the boundary layer
+when
+(i) the fuel is injected at an angle of approximately $10^\circ$ or more,
+(ii) an array spacing of at least the height of the injector is used, and
+(iii) a swept ramp configuration is avoided.
+Another interesting finding of this thesis is that \emph{the use of a negative sweeping
+angle used in conjunction with the cantilevered ramp injector configuration
+is observed to result into better fuel penetration and
+better mixing, and is highly recommended for mixing in a shcramjet inlet where premature
+ignition should be avoided.} Lastly, it is observed that an incoming boundary layer with
+a thickness of 15\% the injector height does not diminish significantly the air
+cushion between the fuel and the wall.
+
+
+
+
+\section{Mixing in the inlet}
+%conclusions from inlet problems
+
+Based on the results obtained from the above-mentioned parametric studies, a baseline
+injector configuration is considered as a means to deliver fuel in the inlet
+of an external compression shcramjet.
+The baseline injector geometry consists of a sweeping angle set to the minimal
+value possible, an array spacing equal to the height of the injector, and the
+injection angle set to 10 degrees. Two inlet geometries are considered: one in which
+the flow is compressed by two equal-strength shocks (\ie\ the shock-shock
+configuration), and one in which the second shock is replaced by a Prandtl-Meyer
+compression fan (\ie\ the shock-fan configuration). The fuel inflow conditions in
+the inlet are such that the
+global equivalence ratio approaches 1, and the convective Mach number is 1.2
+with the speed of the hydrogen jet higher than the speed of the air.
+\emph{Due to the fuel being injected at a very high speed, fuel injection in the inlet
+is found to increase considerably the thrust potential, with a
+gain exceeding the loss by 40--120\%.}
+Another beneficial effect of fuel injection on the inlet performance
+is the observed decrease of approximately 10\% in the skin friction force. The decrease
+in skin friction is attributed to fuel being present in the boundary
+layer after the second inlet compression process: the low density of
+hydrogen decreases the density of the boundary layer, hence resulting
+in a reduced wall shear stress. However, the presence of fuel in the inlet is not
+all beneficial: due to the
+Mach number of the hydrogen stream being significantly less than
+the Mach number of the air stream, the performance of
+the compression fan is reduced, with an associated increase in the
+thrust potential losses estimated to be of 8\% for the shock-fan configurations.
+
+\emph{Typically, it is estimated that 50--70\% of the thrust potential
+losses in the inlet are due to skin friction.} The large importance of the skin friction
+in the shcramjet inlet is seen to be partly due to the axial vortices generated
+by the second inlet compression process continuously entraining upwards
+the upper part of the boundary layer, which results in a substantial
+thinning of the boundary layer, hence increasing the wall shear stress.
+The use of a turbulence model that can predict accurately the wall
+shear stress, such as the Wilcox $k\omega$ model used herein,
+is hence seen to be crucial in assessing the losses accurately in a shcramjet
+inlet. Interestingly, no recirculation region is observed near the
+second inlet shock for all inlet cases studied. This is not completely
+surprising, as turbulent boundary layers are known to offer a
+strong resistance to separation as the flow Mach number increases \cite{jfm:1972:coleman}.
+Furthermore, both the ramp-generated axial vortices and the axial vortices
+generated through the second inlet shock help in reducing the size of the
+boundary layer, which reduces the chance of shock-induced flow separation
+in the inlet.
+
+
+The relatively low mixing efficiency of 0.30 obtained for the baseline inlet
+cases is attributed to the lack of adequate fuel penetration, partly
+due to the absence of a sufficient amount of air separating the fuel
+jets upon entering the second inlet compression process. The lack
+of air in-between the fuel jets prevents the axial vortices
+created by the interaction of the mixing layer with the compression fan (or shock)
+to enhance fuel penetration, as they normally do by entraining the air in-between
+the fuel jets to under the fuel. \emph{A major difficulty encountered while mixing in
+an external compression inlet is that the height of the inlet, and hence
+the amount of air entering the inlet, is strongly dependent on the fuel injection process.}
+For this reason, contrarily to mixing over a flat plate,
+the increase of the injection angle does not translate into a better air-based mixing
+efficiency since the increase in the amount of air entering the inlet is more
+pronounced than the increase in the amount of air mixed with the fuel.
+\emph{One novel approach that is shown
+herein to be successful at increasing the fuel penetration
+is by alternating the injection angle from
+one injector to another.} In this way, the fuel jets emanating from
+the high-angle injectors penetrate deeply in the incoming air, while the
+fuel jets emanating from the low-angle injectors remain close to the body.
+Upon entering the compression process, due to the fuel jets belonging
+to two distinct levels, there is a much increased amount of air separating
+the fuel jets on each level and the compression process induces better
+penetration. Furthermore, the strength of the shock forming on the injector array
+does not increase appreciably due to one in every two injector being at a low
+angle. The reduced array shock strength  helps in keeping the inlet height
+to a low value. The use of alternating injection angles of 9 and 16 degrees
+is seen to result in a 32\% increase in the mixing efficiency and a 14\% increase
+in the thrust potential losses when compared to injecting the fuel at a single injection
+angle of 10 degrees. A second strategy that is shown to increase the fuel penetration
+and the mixing efficiency is the use of longer and thinner cantilevered ramp injectors.
+By doubling the length of the injector, while doubling the height and halving the depth
+of the fuel
+jet, a mixing efficiency increase of 15\% is observed at the expense of an increase
+in thrust potential losses of 12\%. The combination of the alternating angle
+configuration with the longer and thinner injectors results in a mixing efficiency
+of 0.47 and 0.44 for the shock-shock inlet configuration and the shock-fan inlet
+configuration respectively, which is an increase of more than 50\% over the baseline
+injector configuration.
+
+
+% risk of premature ignition
+Premature ignition in the inlet is a high possibility for the baseline inlet
+configurations, as a fuel/air mixture is seen to penetrate the
+hot boundary layer after the second inlet compression wave. One strategy that is
+here shown to prevent to a large extent the fuel
+from entering the boundary layer is the use of an increased injector array spacing.
+A higher array spacing increases the amount of air that is entrained by the axial vortices
+below the fuel jets, hence retarding the complete erosion of the air buffer separating
+the fuel from the wall. Unfortunately,
+while a higher array spacing prevents the fuel from entering the boundary layer,
+it results in stronger axial vortices which entrain upwards the hot flow from the
+boundary layer to the mixing layer. This is particularly worrisome as the mixing
+layer is then exposed to a temperature significantly above the ignition
+point for a considerable amount of time, resulting in a high risk of premature ignition.
+Nonetheless, the risk of premature ignition in the mixing layer can be reduced
+through the use of a shock-fan configuration, which results in
+a reduction in the flow temperature of as much as 80~K compared to the
+shock-shock configuration. Besides helping to prevent the risk of premature ignition,
+a reduction of the temperature of the flow entering the combustor augments the
+performance of the shcramjet due to a
+more efficient heat released in the shock-induced combustion \cite{jpp:2001:sislian}.
+\emph{The use of a Prandtl-Meyer compression surface in a shcramjet inlet is hence strongly
+recommended as it decreases the thrust potential losses, reduces
+the risk of premature ignition, while resulting in a small 6\% diminution of the
+mixing efficiency for the optimal injector configuration considered.}
+
+
