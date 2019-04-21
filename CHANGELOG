@@ -7,6 +7,14 @@ LATEXSTY CHANGELOG
 ____________________________________________________________________________________________
 
 
+
+2019 APR 21b
+   * in gitnewversion.sh
+     - made check for git executable installed on system
+     - added Y/N query on whether to push changes to server
+     - added call to gitnewversion_public.sh
+
+
 2019 APR 21a
    * added README
    * added LICENSE
