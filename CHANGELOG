@@ -7,6 +7,12 @@ TEXSTYLE CHANGELOG
 ____________________________________________________________________________________________
 
 
+2019 APR 22b
+   * renamed
+     - TEXSTYLE -> TEXCLASS
+     - texstyle -> texclass
+
+
 2019 APR 22a
    * renamed
      - LATEXSTY -> TEXSTYLE

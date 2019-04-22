@@ -2,16 +2,16 @@
 
 
 filecheck="gitpull.sh"
-texstylepublic="../TEXSTYLE_github"
+texclasspublic="../TEXCLASS_github"
 tmpfile="UHFGHnhKJLJGHGGHKJkljk_tmpfile_from_gitnewversion_public.txt"
 
 command -v git >/dev/null 2>&1 || { echo "ERROR: gitnewversion_public.sh requires git but it is not installed.  Aborting." >&2; exit 1; }
 
 
 if [ -f "$filecheck" ]; then
-  echo "Checking that the current directory is the TEXSTYLE main directory. [OK]";
+  echo "Checking that the current directory is the TEXCLASS main directory. [OK]";
 else
-  echo "ERROR: gitnewversion_public.sh must be run from the TEXSTYLE main directory. Exiting.";
+  echo "ERROR: gitnewversion_public.sh must be run from the TEXCLASS main directory. Exiting.";
   exit 1
 fi
 
@@ -23,83 +23,83 @@ else
 fi
 
 if [ -n "$(git show-ref --tags $1)" ]; then
-  echo "Checking that version $1 is found on main TEXSTYLE git. [OK]"; 
+  echo "Checking that version $1 is found on main TEXCLASS git. [OK]"; 
 else
-  echo "ERROR: version $1 not yet committed. Please commit version $1 to private TEXSTYLE before committing it to the public TEXSTYLE." ;
+  echo "ERROR: version $1 not yet committed. Please commit version $1 to private TEXCLASS before committing it to the public TEXCLASS." ;
   exit 1
 fi
 
 latesttag=$(git describe --tags `git rev-list --tags --max-count=1`);
 
 if [ "$1" = "$latesttag" ]; then
-  echo "Checking that the latest tag is $1 on the main TEXSTYLE git. [OK]";
+  echo "Checking that the latest tag is $1 on the main TEXCLASS git. [OK]";
 else
-  echo "ERROR: The tag given $1 is not set to the latest tag $latesttag on the main TEXSTYLE git. Exiting.";
+  echo "ERROR: The tag given $1 is not set to the latest tag $latesttag on the main TEXCLASS git. Exiting.";
   exit 1
 fi
 
 
 if [ -n "$(git status --porcelain)" ]; then
-  echo "ERROR: Changes or untracked files reported by git on main TEXSTYLE. Please commit changes to the private TEXSTYLE before committing them to the public TEXSTYLE.";
+  echo "ERROR: Changes or untracked files reported by git on main TEXCLASS. Please commit changes to the private TEXCLASS before committing them to the public TEXCLASS.";
   exit 1
 else
-  echo "Checking that there is no changes or untracked files reported by git on main TEXSTYLE. [OK]";
+  echo "Checking that there is no changes or untracked files reported by git on main TEXCLASS. [OK]";
 fi
 
 
-if [ -d "$texstylepublic" ]; then
-  echo "Checking that the $texstylepublic directory exists. [OK]";
+if [ -d "$texclasspublic" ]; then
+  echo "Checking that the $texclasspublic directory exists. [OK]";
 else
-  echo "The directory $texstylepublic does not exist. Cloning it from github.";
-  git clone https://bernardparent@github.com/bernardparent/TEXSTYLE "$texstylepublic"
-  if [ -d "$texstylepublic" ]; then
-    echo "Checking that the  $texstylepublic directory has been created properly by git. [OK]";
+  echo "The directory $texclasspublic does not exist. Cloning it from github.";
+  git clone https://bernardparent@github.com/bernardparent/TEXCLASS "$texclasspublic"
+  if [ -d "$texclasspublic" ]; then
+    echo "Checking that the  $texclasspublic directory has been created properly by git. [OK]";
   else
-    echo "ERROR: The directory $texstylepublic does not exist. Exiting.";
+    echo "ERROR: The directory $texclasspublic does not exist. Exiting.";
     exit 1
   fi
 fi
 
 
-touch "$texstylepublic/$tmpfile"
+touch "$texclasspublic/$tmpfile"
 if [ -f "$tmpfile" ]; then
-  echo "ERROR: The current directory is $texstylepublic, and not the main TEXSTYLE directory. Exiting.";
-  rm -f "$texstylepublic/$tmpfile"
+  echo "ERROR: The current directory is $texclasspublic, and not the main TEXCLASS directory. Exiting.";
+  rm -f "$texclasspublic/$tmpfile"
   exit 1
 else
-  echo "Checking that the current directory is not $texstylepublic. [OK]";
-  rm -f "$texstylepublic/$tmpfile"
+  echo "Checking that the current directory is not $texclasspublic. [OK]";
+  rm -f "$texclasspublic/$tmpfile"
 fi
 
 
-if [ -d "$texstylepublic/.git" ]; then
-  echo "Checking that the $texstylepublic/.git directory exists. [OK]";
+if [ -d "$texclasspublic/.git" ]; then
+  echo "Checking that the $texclasspublic/.git directory exists. [OK]";
 else
-  echo "ERROR: The directory $texstylepublic/.git does not exist. Exiting.";
+  echo "ERROR: The directory $texclasspublic/.git does not exist. Exiting.";
   exit 1
 fi
 
-echo "Pulling latest public TEXSTYLE from github..";
-rm -rf "$texstylepublic"/* 
-cd $texstylepublic
+echo "Pulling latest public TEXCLASS from github..";
+rm -rf "$texclasspublic"/* 
+cd $texclasspublic
 git checkout master
 git reset --hard
 git pull --tags origin master
 if [ -n "$(git status --porcelain)" ]; then
-  echo "ERROR: Changes or untracked files reported by git on $texstylepublic. Can not proceed. Exiting.";
+  echo "ERROR: Changes or untracked files reported by git on $texclasspublic. Can not proceed. Exiting.";
   exit 1
-  #echo "Changes or untracked files on $texstylepublic. This may not be a source of concern."
+  #echo "Changes or untracked files on $texclasspublic. This may not be a source of concern."
 else
-  echo "Checking that there is no changes or untracked files reported by git on $texstylepublic. [OK]";
+  echo "Checking that there is no changes or untracked files reported by git on $texclasspublic. [OK]";
 fi
 cd -
 
 
-rm -rf "$texstylepublic"/* 
-rm -f "$texstylepublic"/.*
-cp -a * "$texstylepublic"
-cp .* "$texstylepublic"
-cd "$texstylepublic"
+rm -rf "$texclasspublic"/* 
+rm -f "$texclasspublic"/.*
+cp -a * "$texclasspublic"
+cp .* "$texclasspublic"
+cd "$texclasspublic"
 ./removeproprietary.sh
 
 echo ' '
@@ -134,7 +134,7 @@ if [ -f "$filecheck" ]; then
   git tag -a $1 -m "$1"
   git push --tags origin master
 else
- echo "ERROR: couldn't find $filecheck in $texstylepublic directory. Exiting."
+ echo "ERROR: couldn't find $filecheck in $texclasspublic directory. Exiting."
  exit 1
 fi
 
