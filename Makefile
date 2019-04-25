@@ -1,6 +1,7 @@
 SHELL=/bin/sh
 
 clean:
+	( cd warpdoc ; make clean )
 	( cd waflthesis ; make clean )
 	( cd waflreport ; make clean )
 	( cd waflarticle ; make clean )
@@ -11,6 +12,7 @@ clean:
 cleanall: clean
 	( rm -f *~ )
 	( rm -f *tgz )
+	( cd warpdoc ; make cleanall )
 	( cd waflthesis ; make cleanall )
 	( cd waflreport ; make cleanall )
 	( cd waflarticle ; make cleanall )

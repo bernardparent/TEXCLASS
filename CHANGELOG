@@ -2,10 +2,15 @@
 ____________________________________________________________________________________________
 
 
-TEXSTYLE CHANGELOG
+TEXCLASS CHANGELOG
 
 ____________________________________________________________________________________________
 
+
+2019 APR 25a
+   * added warpdoc
+     - Class file from the CFDWARP project 
+ 
 
 2019 APR 22c
    * in LICENSE and README renamed
