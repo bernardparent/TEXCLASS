@@ -5,6 +5,8 @@
 % auto-pst-pdf permits psfrag to be used within the \begin{postscript} \end{postscript} environment. Only include it if you expect to use psfrag. Note that auto-pst-pdf does not work reliably with the \animategraphics command.
 %\usepackage{auto-pst-pdf}
 \usepackage{scalefnt}
+% the package grffile is needed to read in graphics files that have more than 1 dot in the filename like DBD_actuator.T.1.pdf for instance
+\usepackage{grffile}
 \usepackage{bm}
 \usepackage{booktabs}
 \usepackage{animate}
