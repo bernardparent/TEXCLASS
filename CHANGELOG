@@ -7,6 +7,12 @@ TEXCLASS CHANGELOG
 ____________________________________________________________________________________________
 
 
+2020 OCT 11b
+   * in gitnewversion_public.sh
+     - added line "git remote set-url origin git@github.com:bernardparent/TEXCLASS" so that
+       no password is asked for when pushing to git if a ssh key has been uploaded to github
+       
+
 2019 APR 25a
    * added warpdoc
      - Class file from the CFDWARP project 
